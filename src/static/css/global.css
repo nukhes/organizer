@@ -1,4 +1,15 @@
 /*****************************************************************/
+/* GLOBAL FONT SETUP                                             */
+/*****************************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/*****************************************************************/
 /* CSS RESET - https://www.joshwcomeau.com/css/custom-css-reset/ */
 /*****************************************************************/
 *, *::before, *::after {
@@ -8,6 +19,7 @@
 
 body {
     line-height: 1.5;
+    display: flex;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -36,7 +48,7 @@ h1, h2, h3, h4, h5, h6 {
 /* GLOBAL ELEMENTS                                               */
 /*****************************************************************/
 :root {
-    --radius: 1rem;
+    --radius: 8px;
 }
 
 #toggle_theme {
@@ -48,7 +60,19 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
-button {
+button, input {
+    padding: .5rem;
     outline: 1px solid;
     border-radius: var(--radius);
+}
+
+button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.smooth {
+    transition: .25s;
 }
