@@ -3,5 +3,7 @@
     --background-darker: rgb(214, 214, 214);
     --background: rgb(238, 238, 238);
     --text: rgb(32, 32, 32);
+    --text-secondary: rgb(70, 70, 70);
     --link: rgb(67, 96, 182); 
+    --submit: rgb(114, 207, 114);
 }
