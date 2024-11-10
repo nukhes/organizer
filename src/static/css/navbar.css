@@ -1,3 +1,4 @@
+/* navbar body */
 nav {
     display: flex;
     flex-direction: column;
@@ -13,8 +14,8 @@ nav section {
     flex-direction: column;
 }
 
+/* navbar button */
 nav section a {
-    transition: .25s;
     display: flex;
     align-items: center;
     justify-content: center;
