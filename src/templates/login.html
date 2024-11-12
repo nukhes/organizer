@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <form action="/login" method="POST">
+
+        <input class="smooth" type="text" placeholder="Name" name="name">
+        <input class="smooth" type="password" placeholder="Password" name="password" minlength="8">
+
+        <span>Dont have an account? <a href="/register">Create a account</a></span>
+
+        <button class="smooth" type="submit">Login</button>
+    </form>
+{% endblock %}
