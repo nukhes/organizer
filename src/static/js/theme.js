@@ -1,11 +1,17 @@
+import { getCookie } from "./cookie";
+
 const toggleButton = document.querySelector("#toggle_theme")
 const themeCss = document.querySelector("#theme_css")
 const themePath = "../static/css/themes/"
 
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
-if (prefersDarkScheme.matches) {
-    setTheme("dark");
+if (getCookie("theme") != "") {
+    setTheme(getCookie("theme"));
+} else if (prefersDarkScheme.matches) {
+    setTheme("dark")
+} else {
+    setTheme("white")
 }
 
 // Toggle Theme when button is clicked
