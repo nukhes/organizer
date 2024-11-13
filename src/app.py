@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, redirect
+from flask import Flask, render_template, request, flash, redirect, session
 from model import *
 
 
@@ -19,12 +19,13 @@ def login():
         
         out = User.login(form)
         
-        if out != True:
-            flash(out)
-            return redirect("/login")
-        else: 
+        if out == True:
             flash("Logged In")
             return redirect("/")
+        
+        flash(out)
+        return redirect("/login")
+
         
     
     return render_template("login.html")
