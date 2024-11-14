@@ -38,3 +38,11 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: var(--submit-secondary);
 }
+
+.success {
+    background-color: var(--submit);
+}
+
+.error {
+    background-color: var(--error);
+}
