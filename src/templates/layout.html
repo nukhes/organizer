@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="../static/css/global.css">
     <link rel="stylesheet" href="../static/css/navbar.css">
     <link rel="stylesheet" href="../static/css/form.css">
+    <link rel="stylesheet" href="../static/css/messages.css">
 
     <!-- Themes -->
-    <link rel="stylesheet" href="../static/css/themes/light.css" id="theme_css">
+    <link rel="stylesheet" href="" id="theme_css">
     <link rel="stylesheet" href="../static/css/themes/theme.css">
 
     <!-- Font Awesome -->
@@ -31,24 +32,30 @@
         </section>
 
         <section>
-            <a href="/profile"><i class="fa-solid fa-user"></i></a>
+            <button onclick=""><i class="fa-solid fa-user"></i></butt>
         </section>
     </nav>
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    {% endwith %}
+    <div id="modal_container"></div>
 
-    {% block body %}
-    {% endblock %}
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul id="messages">
+                {% for message in messages %}
+                    <li class="{{ message[0] }}">{{ message[1] }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
 
-    <script src="../static/js/theme.js"></script>
+        {% block body %}
+        {% endblock %}
+    </main>
+
+    <script type="module" src="../static/js/cookie.js"></script>
+    <script type="module" src="../static/js/theme.js"></script>
+    <script type="module" src="../static/js/modal.js"></script>
 
 </body>
 </html>
