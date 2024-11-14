@@ -1,0 +1,14 @@
+#messages li {
+    height: 2rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1rem;
+    padding: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    border-radius: var(--radius);
+}
