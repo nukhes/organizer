@@ -6,4 +6,6 @@
     --text-secondary: rgb(70, 70, 70);
     --link: rgb(67, 96, 182); 
     --submit: rgb(114, 207, 114);
+    --submit-secondary: rgb(11, 90, 11);
+    --error: rgb(146, 27, 27);
 }
