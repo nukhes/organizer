@@ -1,6 +1,8 @@
 /* navbar body */
 nav {
     position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -8,6 +10,7 @@ nav {
     width: 3.8rem;
     height: 100vh;
     padding: 1rem 0 1rem 0;
+    background: var(--background-darker);
 }
 
 nav section {
@@ -25,4 +28,10 @@ nav section a {
     font-size: 1.5rem;
     text-decoration: none;
     border-radius: 100%;
+    color: var(--accent);
+}
+
+nav a:hover{
+    background-color: var(--background);
+    opacity: 0.7;
 }
