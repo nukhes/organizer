@@ -1,14 +1,22 @@
 #messages li {
-    height: 2rem;
     position: absolute;
     left: 50%;
+    top: 1rem;
     transform: translateX(-50%);
-    margin-top: 1rem;
     padding: 2rem;
+    height: 2rem;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     list-style-type: none;
     border-radius: var(--radius);
+}
+
+.success {
+    background-color: var(--submit);
+}
+
+.error {
+    background-color: var(--error);
 }
