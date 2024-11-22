@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="../static/css/navbar.css">
     <link rel="stylesheet" href="../static/css/form.css">
     <link rel="stylesheet" href="../static/css/messages.css">
+    <link rel="stylesheet" href="../static/css/tasks.css">
 
     <!-- Themes -->
     <link rel="stylesheet" href="" id="theme_css">
-    <link rel="stylesheet" href="../static/css/themes/theme.css">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -38,20 +38,18 @@
 
     <div id="modal_container"></div>
 
-    <main>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <ul id="messages">
-                {% for message in messages %}
-                    <li class="{{ message[0] }}">{{ message[1] }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% endwith %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <ul id="messages">
+            {% for message in messages %}
+                <li class="{{ message[0] }}">{{ message[1] }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
 
-        {% block body %}
-        {% endblock %}
-    </main>
+    {% block body %}
+    {% endblock %}
 
     <script type="module" src="../static/js/cookie.js"></script>
     <script type="module" src="../static/js/theme.js"></script>
