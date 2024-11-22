@@ -90,3 +90,48 @@ class User(Database):
             out = "Server error"
             
         return True if not out else out
+    
+class Tasks:
+    def get(self, id):
+        connection = sqlite3.connect(path)
+        cursor = connection.cursor()
+        
+        cursor.execute("SELECT id, name, details, date, status FROM tasks WHERE user_id = ?", (id,))
+        tasks = cursor.fetchall()
+        
+        return tasks
+    
+    def toggle(self, task_id):
+        connection = sqlite3.connect(path)
+        cursor = connection.cursor()
+        
+        cursor.execute("SELECT status FROM tasks WHERE id = ?", (task_id,))
+        res = cursor.fetchone()
+        
+        if res is None:
+            print("task [{task_id}] not found")
+            connection.close()
+            return
+        
+        status = res[0]
+        
+        print(status)
+        
+        status = 0 if status == 1 else 1
+            
+        print(status)
+        
+        cursor.execute("UPDATE tasks SET status = ? WHERE id = ?", (status, task_id))
+        connection.commit()
+        connection.close()
+        
+        return True if status == 1 else False
+    
+    def delete(self, id):
+        try:
+            connection = sqlite3.connect(path)
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM tasks WHERE id = ?", (id,))
+        except:
+            return False
+        return True

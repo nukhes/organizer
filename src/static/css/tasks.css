@@ -1,0 +1,58 @@
+#hello {
+    text-align: center;
+    margin: 3rem;
+}
+
+#tasks_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    width: 100vw;
+    max-width: 500px;
+    padding: 0;
+}
+
+/* task body */
+#tasks_container li {
+    background-color: var(--background-darker);
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem .5rem 1rem .5rem;
+    border-radius: var(--radius);
+}
+
+#tasks_container li div {
+    display: flex;
+    align-items: center;
+}
+
+/* task title */
+#tasks_container li h1 {
+    font-weight: normal;
+    font-size: medium;
+    text-align: left;
+}
+
+/* task date */
+#tasks_container li span {
+    font-size: small;
+    text-align: right;
+}
+
+/* checkbox */
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    outline: 0;
+    accent-color: var(--accent); /* Blue accent color */
+    border-radius: var(--radius);
+}
+
+input[type="checkbox"]:checked + h1 {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
