@@ -163,3 +163,4 @@ cython_debug/
 
 # database
 src/database/organizer.db
+src/database/organizer.db-journal
