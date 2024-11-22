@@ -5,4 +5,13 @@
 {% endblock %}
 
 {% block body %}
+    <h1 id="hello">Hello, {{ username }}.</h1>
+    <section>
+        <ul id="tasks_container">
+        </ul>
+    </section>
+
+    <script type="module" src="../static/js/task/Task.js"></script>
+    <script type="module" src="../static/js/task/tasks.js"></script>
+    
 {% endblock %}
