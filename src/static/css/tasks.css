@@ -56,3 +56,17 @@ input[type="checkbox"]:checked + h1 {
     text-decoration: line-through;
     color: var(--text-secondary);
 }
+
+/* delete icon */
+#tasks_container .delete:hover {
+    color: var(--text);
+    cursor: pointer;
+}
+
+/* right part of task body*/
+.task_right_container {
+    display: flex;
+    width: 4rem;
+    gap: 1rem;
+    color: var(--text-secondary);
+}

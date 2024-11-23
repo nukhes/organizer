@@ -74,14 +74,25 @@ def tasks_operations():
     # Toggle Task "status key"
     if op == "toggle":
         task_id = data.get('taskId')
-        task.toggle(task_id)
+        res = task.toggle(task_id)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500
     
     if op == "delete":
         task_id = data.get('taskId')
-        task.delete(task_id)
+        res = task.delete(task_id)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500
     
     if op == "get":
-        return jsonify(task.get(session["id"]))
+        task_id = data.get('taskId')
+        return jsonify(task.get(session["id"], task_id)), 200
+    
+    if op == "add":
+        name = data.get('name')
+        return jsonify(task.get(session["id"], name)), 200
         
 
 @app.route("/habits")

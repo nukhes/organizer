@@ -4,7 +4,7 @@ export class Task {
         this.api = "/tasks/operations"
     }
 
-    get() {
+    get(id=-1) {
         return fetch(this.api, {
             method: "POST",
             headers: {
@@ -12,6 +12,7 @@ export class Task {
             },
             body: JSON.stringify({
                 op: "get",
+                task_id: id
             })
         })
         .then(response => {
@@ -30,8 +31,8 @@ export class Task {
         });
     }   
 
-    toggle() {
-        fetch(this.api, {
+    toggle(refresh, id) {
+        return fetch(this.api, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,14 +44,15 @@ export class Task {
         })
         .then(data => {
             console.log(data);
+            refresh(id)
         })
         .catch(error => {
             console.error(error);
         });
     }
 
-    delete() {
-        fetch(this.api, {
+    delete(refresh) {
+        return fetch(this.api, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -63,6 +65,7 @@ export class Task {
         .then(response => response.json())
         .then(data => {
             console.log(data);
+            refresh()
         })
         .catch(error => {
             console.error(error);

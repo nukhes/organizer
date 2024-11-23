@@ -1,76 +1,33 @@
 import { Task } from "./Task.js";
+import { returnTaskComponent, taskAddEventListener } from './helpers.js'
 
 const taskContainer = document.querySelector("#tasks_container")
 
-function taskToggle(id) {
-    const task = new Task(id)
-    task.toggle(id)
-}
+export async function refreshTasks(id=-1) {
+    // Default behavior: refresh all tasks
+    let task = new Task()
+    const data = await task.get(id)
 
-function taskDelete(id) {
-    const task = new Task(id)
-    task.delete(id)
-}
-
-
-function refreshTasks() {
-    let task = new Task();
-    task.get().then(data => {
-        if (!Array.isArray(data)) {
-            console.error("Expected an array but got:", data);
-            return;
-        }
-
-        // Create each task
-        data.forEach(task => {
-            taskContainer.innerHTML += taskComponent(task);
-        });
-
-        // Add a listener to every task inputs
-        for (let i = 1; i <= data.length; i++) {
-            // CHECKBOX
-            document.querySelector(`#task_checkbox_${i}`).addEventListener("click", () => {
-                taskToggle(i)
-            })
-
-            // DELETE BUTTON
-            try {
-                document.querySelector(`#task_delete_${i}`).addEventListener("click", () => {
-                    taskDelete(i)
-                })
-            } catch {}
-        }
-
-    });
-}
-
-function taskComponent(taskDict) {
-    
-    let isChecked, deleteButton = ""
-    let id = taskDict[0]
-
-    // If task is done
-    if (taskDict[4] != 0) {
-        isChecked = "checked"
-        deleteButton = `<i id="task_delete_${id}" class="fa-solid fa-trash"></i>`
+    // Validate data
+    if (!Array.isArray(data)) {
+        console.error("Expected an array but got:", data)
+        return
     }
 
-    const element = `
-    <li>
-        <div>
-            <input id="task_checkbox_${id}" type="checkbox"${isChecked}>
-            <h1>${taskDict[1]}</h1>
-        </div>
-        <div>
-            ${deleteButton}
-            <span>${taskDict[3]}</span>
-        </div>
-    </li>
-    `
+    // Clear the container before rendering
+    taskContainer.innerHTML = ""
 
-    return element;
+    // Create each task
+    data.forEach(task => {
+        taskContainer.innerHTML += returnTaskComponent(task)
+    })
+
+    // Add event listeners
+    data.forEach(task => {
+        const taskId = task[0]
+        taskAddEventListener(taskId)
+    })
 }
-
 
 
 refreshTasks()

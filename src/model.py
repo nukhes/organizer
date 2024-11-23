@@ -48,6 +48,7 @@ class User(Database):
             out = "This username is already taken"
             
         if out == "":
+            cursor.execute("BEGIN TRANSACTION;")
             cursor.execute("INSERT INTO users(username, hash) VALUES (?, ?)", (form["name"], generate_password_hash(form["pass"])))
             connection.commit()
         return out
@@ -92,46 +93,67 @@ class User(Database):
         return True if not out else out
     
 class Tasks:
-    def get(self, id):
+    def get(self, id, task_id):
         connection = sqlite3.connect(path)
         cursor = connection.cursor()
         
+        if task_id:
+            cursor.execute("SELECT name, details, date, status FROM tasks WHERE id = ? LIMIT 1", (3,))
+            task = cursor.fetcha()
+            return task
+        
+
         cursor.execute("SELECT id, name, details, date, status FROM tasks WHERE user_id = ?", (id,))
         tasks = cursor.fetchall()
-        
         return tasks
+    
+    def add(user_id, name):
+        connection = sqlite3.connect(path)
+        cursor = connection.cursor()
+        
+        # Try to create a new task
+        try:
+            cursor.execute("BEGIN TRANSACTION;")
+            cursor.execute("INSERT INTO tasks (name, user_id) VALUES (?, ?)", (name, user_id))
+            connection.commit()
+            connection.close()
+        except:
+            print("ERROR: task named [{name}] cannot be created")
+            connection.close()
+            return False
+        return True
     
     def toggle(self, task_id):
         connection = sqlite3.connect(path)
         cursor = connection.cursor()
         
-        cursor.execute("SELECT status FROM tasks WHERE id = ?", (task_id,))
-        res = cursor.fetchone()
-        
-        if res is None:
-            print("task [{task_id}] not found")
+        # Try to cat the actual state of an task
+        try:
+            cursor.execute("SELECT status FROM tasks WHERE id = ? LIMIT 1", (task_id,))
+            res = cursor.fetchone()
+        except:
+            print("ERROR: task [{task_id}] not found")
             connection.close()
-            return
+            return False
         
-        status = res[0]
+        # Set the next state based on actual
+        status = 0 if res[0] == 1 else 1
         
-        print(status)
-        
-        status = 0 if status == 1 else 1
-            
-        print(status)
-        
+        # Update status
+        cursor.execute("BEGIN TRANSACTION;")
         cursor.execute("UPDATE tasks SET status = ? WHERE id = ?", (status, task_id))
         connection.commit()
         connection.close()
-        
-        return True if status == 1 else False
+        return True
     
     def delete(self, id):
         try:
             connection = sqlite3.connect(path)
             cursor = connection.cursor()
+            cursor.execute("BEGIN TRANSACTION;")
             cursor.execute("DELETE FROM tasks WHERE id = ?", (id,))
+            connection.commit()
+            connection.close()
         except:
             return False
         return True
