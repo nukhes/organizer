@@ -13,7 +13,7 @@ switch (getCookie("theme")) {
         setTheme("light")
         break
     default:
-        if (prefersDarkScheme.matches) { setTheme("dark") } else { setTheme("white") }
+        if (prefersDarkScheme.matches) { setTheme("dark") } else { setTheme("light") }
 }
 
 // Toggle Theme when button is clicked
