@@ -79,7 +79,8 @@ function handleTaskDelete(id) {
 
 function handleTaskUpdate(id, name) {
     const task = new Task(id);
-    task.update(refreshTasks, name);
+    const fname = (name == "") ? "New Task" : name
+    task.update(refreshTasks, fname);
 }
 
 export function handleTaskAdd(taskName = "New Task") {
