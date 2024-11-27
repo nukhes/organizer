@@ -51,7 +51,9 @@ def register():
         
         if out:
             flash(out, "error")
-        return redirect("/register")
+            return redirect("/register")
+        flash("Account Created", "success")
+        return redirect("/login")
     
     return render_template("register.html")
 
@@ -92,7 +94,10 @@ def tasks_operations():
     
     if op == "add":
         name = data.get('name')
-        return jsonify(task.get(session["id"], name)), 200
+        res = task.add(session["id"], name)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500
         
 
 @app.route("/habits")
