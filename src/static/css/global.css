@@ -58,6 +58,19 @@ h1, h2, h3, h4, h5, h6 {
     --radius: 8px;
 }
 
+/* SCROLLBAR */
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-thumb {
+  width: 26px;
+  border-radius: 13px;
+  background-clip: padding-box;
+  border: 10px solid transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 0 10px var(--text-secondary);
+}
+
 body a {
     color: var(--link);
 }
