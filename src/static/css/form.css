@@ -18,3 +18,8 @@ form button {
 button {
     margin: auto;
 }
+
+#add_task {
+    position: absolute;
+    bottom: 1rem;
+}
