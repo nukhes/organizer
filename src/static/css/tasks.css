@@ -21,7 +21,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem .5rem 1rem .5rem;
+    padding: 1rem 2rem 1rem 2rem;
     border-radius: var(--radius);
 }
 
@@ -53,7 +53,7 @@ input[type="checkbox"] {
     border-radius: var(--radius);
 }
 
-input[type="checkbox"]:checked + h1 {
+input[type="checkbox"]:checked + .task_name_done {
     text-decoration: line-through;
     color: var(--text-secondary);
 }
@@ -67,10 +67,33 @@ input[type="checkbox"]:checked + h1 {
 /* right part of task body*/
 .task_right_container {
     display: flex;
+    justify-content: flex-end;
     width: 4rem;
     color: var(--text-secondary);
 }
 
 #new_task_tip {
     opacity: .5;
+}
+
+.task_name {
+    outline: 2px solid #000;
+    outline-offset: -2px;
+    outline-style: none;
+    background: none;
+    outline-offset: px-2px;
+}
+
+.task_name_done {
+    padding: .5rem;
+}
+
+.delete {
+    font-size: 14pt;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }

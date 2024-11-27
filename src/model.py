@@ -157,3 +157,16 @@ class Tasks:
         except:
             return False
         return True
+    
+    def update(self, task_id, name):
+        connection = sqlite3.connect(path)
+        cursor = connection.cursor()
+
+        try:
+            cursor.execute("BEGIN TRANSACTION;")
+            cursor.execute("UPDATE tasks SET name = ? WHERE id = ?", (name, task_id))
+            connection.commit()
+            connection.close()
+        except:
+            return False
+        return True

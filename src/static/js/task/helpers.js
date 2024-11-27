@@ -14,23 +14,33 @@ export function returnTaskComponent(task) {
     const deleteButton = taskStatus
         ? `<i id="task_delete_${id}" class="delete fa-solid fa-trash" aria-label="Excluir tarefa"></i>`
         : "";
-    const time = task[3] || "";
+    const time = task[3] ? `<span>${task[3]}</span>` : "";
 
     return `
         <li>
             <div>
                 <input id="task_checkbox_${id}" type="checkbox" ${isChecked}>
-                <h1>${task[1]}</h1>
+
+                ${taskStatus ? `
+
+                <h1 class="task_name_done">${task[1]}</h1>
+
+                ` : `
+
+                <input  class="task_name" id="task_name_${id}"type="text" placeholder="Task Name" value="${task[1]}">
+
+                `}
+                
             </div>
             <div class="task_right_container">
                 <div id="task_delete_container_${id}">${deleteButton}</div>
-                <span>${time}</span>
+                ${time}
             </div>
         </li>
     `;
 }
 
-export function taskAddEventListener(taskId, checkBox, delButton) {
+export function taskAddEventListener(taskId, checkBox, delButton, input) {
     const check = document.querySelector(`#task_checkbox_${taskId}`);
     const deleteContainer = document.querySelector(`#task_delete_container_${taskId}`);
 
@@ -39,24 +49,40 @@ export function taskAddEventListener(taskId, checkBox, delButton) {
     }
 
     if (delButton && deleteContainer) {
-        const deleteButton = deleteContainer.querySelector(`#task_delete_${taskId}`);
+        const deleteButton = document.querySelector(`#task_delete_${taskId}`);
         if (deleteButton) {
             deleteButton.addEventListener("click", () => handleTaskDelete(taskId));
         }
     }
+
+    if (input) {
+        const taskNameInput = document.querySelector(`#task_name_${taskId}`);
+
+        if (taskNameInput) {
+            taskNameInput.addEventListener('blur', () => {
+                handleTaskUpdate(taskId, (taskNameInput.value).trim());
+            });
+        }
+    }
 }
+
 
 function handleTaskToggle(id) {
     const task = new Task(id);
-    task.toggle(refreshTasks, id);
+    task.toggle(refreshTasks);
 }
 
 function handleTaskDelete(id) {
     const task = new Task(id);
-    task.delete(refreshTasks, id);
+    task.delete(refreshTasks);
 }
 
-export function handleTaskAdd(taskName = "Nova Tarefa") {
+function handleTaskUpdate(id, name) {
+    const task = new Task(id);
+    task.update(refreshTasks, name);
+}
+
+export function handleTaskAdd(taskName = "New Task") {
     const addTaskButton = document.querySelector("#add_task");
     if (addTaskButton) {
         addTaskButton.addEventListener("click", () => {

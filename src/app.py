@@ -98,6 +98,14 @@ def tasks_operations():
         if res:
             return jsonify({"message": "success"}), 200
         return jsonify({"error": "server error"}), 500
+    
+    if op == "update":
+        task_id = data.get('taskId')
+        name = data.get('name')
+        res = task.update(task_id, name)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500
         
 
 @app.route("/habits")

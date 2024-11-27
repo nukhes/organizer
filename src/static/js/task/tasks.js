@@ -33,7 +33,7 @@ export async function refreshTasks(id=-1) {
     // Add event listeners
     data.forEach(task => {
         const taskId = task[0]
-        taskAddEventListener(taskId, true, true)
+        taskAddEventListener(taskId, true, true, true)
     })
 }
 
