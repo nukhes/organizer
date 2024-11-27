@@ -102,3 +102,12 @@ button[type="submit"]:hover {
 .smooth {
     transition: .25s;
 }
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

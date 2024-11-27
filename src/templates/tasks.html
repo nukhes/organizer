@@ -6,9 +6,14 @@
 
 {% block body %}
     <h1 id="hello">Hello, {{ username }}.</h1>
-    <section>
+
+    <section class="main">
+
         <ul id="tasks_container">
         </ul>
+
+        <button id="add_task">Add Task</button>
+
     </section>
 
     <script type="module" src="../static/js/task/Task.js"></script>

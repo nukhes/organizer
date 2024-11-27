@@ -14,3 +14,7 @@ form span {
 form button {
     margin-top: 0.5rem;
 }
+
+button {
+    margin: auto;
+}

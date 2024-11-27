@@ -1,6 +1,5 @@
 #hello {
-    text-align: center;
-    margin: 3rem;
+    margin-bottom: 1rem;
 }
 
 #tasks_container {
@@ -67,6 +66,9 @@ input[type="checkbox"]:checked + h1 {
 .task_right_container {
     display: flex;
     width: 4rem;
-    gap: 1rem;
     color: var(--text-secondary);
+}
+
+#new_task_tip {
+    opacity: .5;
 }

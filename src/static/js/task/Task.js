@@ -71,4 +71,25 @@ export class Task {
             console.error(error);
         });
     }
+
+    add(refresh, name) {
+        return fetch(this.api, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                op: "add",
+                name: name
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            refresh()
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
 }

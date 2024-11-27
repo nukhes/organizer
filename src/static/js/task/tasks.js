@@ -1,7 +1,8 @@
 import { Task } from "./Task.js";
-import { returnTaskComponent, taskAddEventListener } from './helpers.js'
+import { returnTaskComponent, taskAddEventListener, handleTaskAdd } from './helpers.js'
 
 const taskContainer = document.querySelector("#tasks_container")
+const addTaskButton = document.querySelector("#add_task")
 
 export async function refreshTasks(id=-1) {
     // Default behavior: refresh all tasks
@@ -14,6 +15,14 @@ export async function refreshTasks(id=-1) {
         return
     }
 
+    if (data.length == 0) {
+        taskContainer.innerHTML = "<span id='new_task_tip'>Start by creating a new task</span>"
+        return
+    }
+
+    // If its just to refresh one task
+
+
     // Clear the container before rendering
     taskContainer.innerHTML = ""
 
@@ -25,7 +34,7 @@ export async function refreshTasks(id=-1) {
     // Add event listeners
     data.forEach(task => {
         const taskId = task[0]
-        taskAddEventListener(taskId)
+        taskAddEventListener(taskId, true, true)
     })
 }
 

@@ -107,7 +107,7 @@ class Tasks:
         tasks = cursor.fetchall()
         return tasks
     
-    def add(user_id, name):
+    def add(self, user_id, name):
         connection = sqlite3.connect(path)
         cursor = connection.cursor()
         
