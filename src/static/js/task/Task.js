@@ -22,7 +22,7 @@ export class Task {
             return response.json();
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             return data;
         })
         .catch(error => {
@@ -43,7 +43,7 @@ export class Task {
             })
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             refresh(id)
         })
         .catch(error => {
@@ -64,7 +64,7 @@ export class Task {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             refresh()
         })
         .catch(error => {
@@ -85,7 +85,7 @@ export class Task {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             refresh()
         })
         .catch(error => {
