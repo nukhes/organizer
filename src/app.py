@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, flash, redirect, session, jsonify
-from model import *
 from helpers import *
 
+from models.Task import Task
+from models.Habit import Habit
+from models.User import User
 
 app = Flask(__name__)
 app.secret_key = "638eb4448251ca268a11cc831211ad07ecbbf3e109a0c15db2ce2202daeea4249314201fffdb0b3b3ef9df6fcebe3a3a1078311da1d5122df811a587278a99c99fe78adb16b09179f8fcc87e9da98cc0676350754ee7ce07f7f9ec5f08a40990"
@@ -65,7 +67,7 @@ def tasks():
 
 @app.route("/tasks/operations", methods=["POST"])
 def tasks_operations():
-    task = Tasks()
+    task = Task()
     
     # JSON from AJAX Client
     data = request.get_json()
@@ -111,8 +113,32 @@ def tasks_operations():
 @app.route("/habits")
 @login_required
 def habits():
-    return render_template("habits.html")
+    return render_template("habits.html", username=session["name"])
 
+@app.route("/habits/operations", methods=["POST"])
+def habiuts_operations():
+    habits = Habit()
+    
+    # JSON from AJAX Client
+    data = request.get_json()
+    
+    # Operation Type
+    op = data.get("op")
+    
+    # Toggle Task "status key"
+    if op == "Check":
+        habit_id = data.get('habitId')
+        res = habits.toggle(task_id)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500
+    
+    if op == "delete":
+        habit_id = data.get('habitId')
+        res = habits.delete(habit_id)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500    
 
 @app.route("/pomodoro")
 @login_required
