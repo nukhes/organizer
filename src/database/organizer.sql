@@ -8,7 +8,8 @@ CREATE TABLE habits (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     user_id INTEGER NOT NULL,
     name TEXT NOT NULL,
-    streak INTEGER NOT NULL,
+    streak INTEGER NOT NULL DEFAULT 0,
+    last_check DATE,
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES users(id)
 );
 CREATE TABLE tasks (
