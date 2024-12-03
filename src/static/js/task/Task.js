@@ -31,7 +31,7 @@ export class Task {
         });
     }   
 
-    toggle(refresh, id) {
+    toggle(refresh) {
         return fetch(this.api, {
             method: "POST",
             headers: {

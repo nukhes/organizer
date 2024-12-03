@@ -18,7 +18,7 @@ export async function refreshTasks(id=-1) {
 
     // If user dont have tasks
     if (data.length == 0) {
-        taskContainer.innerHTML = "<span id='new_task_tip'>Start by creating a new task</span>"
+        taskContainer.innerHTML = "<span id='new_tip'>Start by creating a new task</span>"
         return
     }
 
