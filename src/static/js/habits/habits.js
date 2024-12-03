@@ -1,14 +1,14 @@
 import { Habit } from "./Habit.js";
-import { returnTaskComponent, taskAddEventListener, handleTaskAdd } from './helpers.js'
+import { returnHabitComponent, habitAddEventListener, handleHabitAdd} from './helpers.js'
 
-const taskContainer = document.querySelector("#tasks_container")
+const habitContainer = document.querySelector("#habits_container")
 
-handleTaskAdd()
+handleHabitAdd()
 
 export async function refreshHabits(id=-1) {
-    // Default behavior: refresh all tasks
-    let task = new Task()
-    const data = await task.get(id)
+    // Default behavior: refresh all habit
+    let habit = new Habit()
+    const data = await habit.get(id)
 
     // Validate data
     if (!Array.isArray(data)) {
@@ -18,24 +18,18 @@ export async function refreshHabits(id=-1) {
 
     // If user dont have tasks
     if (data.length == 0) {
-        taskContainer.innerHTML = "<span id='new_task_tip'>Start by creating a new task</span>"
+        habitContainer.innerHTML = "<span id='new_tip'>Start by creating a new habit</span>"
         return
     }
 
     // Clear the container before rendering
-    taskContainer.innerHTML = ""
+    habitContainer.innerHTML = ""
 
-    // Create each task
-    data.forEach(task => {
-        taskContainer.innerHTML += returnTaskComponent(task)
-    })
-
-    // Add event listeners
-    data.forEach(task => {
-        const taskId = task[0]
-        taskAddEventListener(taskId, true, true, true)
+    // Create each habit
+    data.forEach(habit => {
+        habitContainer.innerHTML += returnHabitComponent(habit)
     })
 }
 
 
-refreshTasks()
+refreshHabits()

@@ -1,5 +1,12 @@
 from flask import redirect, session
 from functools import wraps
+from datetime import datetime
+
+def get_date():
+    current_date = datetime.now()
+    sql_date = current_date.strftime('%Y-%m-%d')
+    return sql_date
+
 
 def login_required(f):
     """

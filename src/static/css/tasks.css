@@ -2,7 +2,7 @@
     margin-bottom: 1rem;
 }
 
-#tasks_container {
+#tasks_container, #habits_container {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -15,7 +15,7 @@
 }
 
 /* task body */
-#tasks_container li {
+#tasks_container li, #habits_container li {
     background-color: var(--background-darker);
     list-style-type: none;
     display: flex;
@@ -25,13 +25,13 @@
     border-radius: var(--radius);
 }
 
-#tasks_container li div {
+#tasks_container li div, #habits_container li div {
     display: flex;
     align-items: center;
 }
 
 /* task title */
-#tasks_container li h1 {
+#tasks_container li h1, #habits_container li h1 {
     font-weight: normal;
     font-size: medium;
     text-align: left;
@@ -72,7 +72,7 @@ input[type="checkbox"]:checked + .task_name_done {
     color: var(--text-secondary);
 }
 
-#new_task_tip {
+#new_tip {
     opacity: .5;
 }
 
@@ -81,6 +81,7 @@ input[type="checkbox"]:checked + .task_name_done {
     outline-offset: -2px;
     outline-style: none;
     background: none;
+    text-align: left;
     outline-offset: px-2px;
 }
 

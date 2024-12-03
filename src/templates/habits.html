@@ -4,6 +4,12 @@
     Habits
 {% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/tasks.css">
+    <link rel="stylesheet" href="../static/css/habits.css">
+{% endblock %}
+
+
 {% block body %}
     <h1 id="hello">Hello, {{ username }}.</h1>
 
@@ -16,6 +22,6 @@
 
     </section>
 
-    <script type="module" src="../static/js/task/Task.js"></script>
-    <script type="module" src="../static/js/task/tasks.js"></script>
+    <script type="module" src="../static/js/habits/Habit.js"></script>
+    <script type="module" src="../static/js/habits/habits.js"></script>
 {% endblock %}

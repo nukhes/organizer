@@ -116,8 +116,8 @@ def habits():
     return render_template("habits.html", username=session["name"])
 
 @app.route("/habits/operations", methods=["POST"])
-def habiuts_operations():
-    habits = Habit()
+def habits_operations():
+    habit = Habit()
     
     # JSON from AJAX Client
     data = request.get_json()
@@ -125,20 +125,26 @@ def habiuts_operations():
     # Operation Type
     op = data.get("op")
     
-    # Toggle Task "status key"
-    if op == "Check":
+    # Check habit
+    if op == "check":
         habit_id = data.get('habitId')
-        res = habits.toggle(task_id)
+        res = habit.check(habit_id)
         if res:
             return jsonify({"message": "success"}), 200
         return jsonify({"error": "server error"}), 500
     
-    if op == "delete":
+    # Get habits
+    if op == "get":
         habit_id = data.get('habitId')
-        res = habits.delete(habit_id)
+        return jsonify(habit.get(session["id"], habit_id)), 200
+    
+    # Add habit
+    if op == "add":
+        name = data.get('name')
+        res = habit.add(session["id"], name)
         if res:
             return jsonify({"message": "success"}), 200
-        return jsonify({"error": "server error"}), 500    
+        return jsonify({"error": "server error"}), 500
 
 @app.route("/pomodoro")
 @login_required

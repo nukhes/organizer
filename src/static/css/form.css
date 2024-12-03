@@ -19,7 +19,7 @@ button {
     margin: auto;
 }
 
-#add_task {
+#add_task, #add_habit {
     position: absolute;
     bottom: 1rem;
 }
