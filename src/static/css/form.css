@@ -19,7 +19,15 @@ button {
     margin: auto;
 }
 
-#add_task, #add_habit {
+#add_task, #open_modal {
     position: absolute;
     bottom: 1rem;
+}
+
+.delete_button {
+    background-color: var(--error);
+}
+
+.delete_button:hover {
+    background-color: var(--error);
 }
