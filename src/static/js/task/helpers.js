@@ -17,7 +17,7 @@ export function returnTaskComponent(task) {
     const time = task[3] ? `<span>${task[3]}</span>` : "";
 
     return `
-        <li>
+        <li class="smooth">
             <div>
                 <input id="task_checkbox_${id}" type="checkbox" ${isChecked}>
 
