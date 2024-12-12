@@ -141,7 +141,26 @@ def habits_operations():
     # Add habit
     if op == "add":
         name = data.get('name')
+        if name == "":
+            return jsonify({"error": "name is missing"}), 500
         res = habit.add(session["id"], name)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500
+    
+    # Update habit
+    if op == "update":
+        habit_id = data.get('habitId')
+        name = data.get('name')
+        res = habit.update(habit_id, name)
+        if res:
+            return jsonify({"message": "success"}), 200
+        return jsonify({"error": "server error"}), 500
+    
+    # Delete habit
+    if op == "delete":
+        habit_id = data.get('habitId')
+        res = habit.delete(habit_id)
         if res:
             return jsonify({"message": "success"}), 200
         return jsonify({"error": "server error"}), 500

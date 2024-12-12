@@ -3,8 +3,6 @@ import { returnHabitComponent, habitAddEventListener, handleHabitAdd} from './he
 
 const habitContainer = document.querySelector("#habits_container")
 
-handleHabitAdd()
-
 export async function refreshHabits(id=-1) {
     // Default behavior: refresh all habit
     let habit = new Habit()
@@ -29,7 +27,13 @@ export async function refreshHabits(id=-1) {
     data.forEach(habit => {
         habitContainer.innerHTML += returnHabitComponent(habit)
     })
+
+    data.forEach(habit => {
+        const habitId = habit[0]
+        habitAddEventListener(habitId)
+    })
 }
 
 
 refreshHabits()
+handleHabitAdd()

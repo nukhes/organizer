@@ -43,7 +43,7 @@ export class Habit {
             })
         })
         .then(data => {
-            // console.log(data);
+            console.log(data);
             refresh(this.id)
         })
         .catch(error => {
@@ -86,6 +86,29 @@ export class Habit {
         .then(response => response.json())
         .then(data => {
             // console.log(data);
+            refresh()
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+
+    update(refresh, habitName) {
+        return fetch(this.api, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                op: "update",
+                name: habitName,
+                habitId: this.id
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(this.api, habitName, this.id);
+            console.log(data);
             refresh()
         })
         .catch(error => {
