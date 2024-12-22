@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tasks
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="../static/css/pomodoro.css">
+{% endblock %}
+
+{% block body %}
+
+    <section class="main">
+        <div id="pomodoro_container">
+            <div id="pomodoro_modifiers">
+                <button min="25" work>Pomodoro</button>
+                <button min="5">Short Break</button>
+                <button min="15">Long Break</button>
+            </div>
+            <div id="main">
+                <span id="pomodoro_status"></span>
+                <span id="pomodoro_timer">00:00</span>
+                <button id="pomodoro_action">Start</button>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="../static/js/pomodoro/pomodoro.js"></script>
+{% endblock %}

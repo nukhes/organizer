@@ -1,0 +1,40 @@
+#pomodoro_container {
+    margin: auto;
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    background-color: var(--background-darker);
+    border-radius: 8px;
+}
+
+#pomodoro_container div {
+    gap: .5rem;
+    display: flex;
+}
+
+#pomodoro_container #main {
+    flex-direction: column;
+    gap: 0;
+}
+
+#pomodoro_timer {
+    font-size: 48pt;
+}
+
+#pomodoro_modifiers button {
+    font-size: 8pt;
+    background-color: var(--text-secondary);
+    outline: 0;
+}
+
+#pomodoro_status {
+    margin-top: 1.4rem;
+    opacity: .3;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 8rem);
+}
