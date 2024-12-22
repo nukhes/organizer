@@ -7,7 +7,7 @@ from models.User import User
 
 app = Flask(__name__)
 app.secret_key = "638eb4448251ca268a11cc831211ad07ecbbf3e109a0c15db2ce2202daeea4249314201fffdb0b3b3ef9df6fcebe3a3a1078311da1d5122df811a587278a99c99fe78adb16b09179f8fcc87e9da98cc0676350754ee7ce07f7f9ec5f08a40990"
-
+[]
 @app.route("/")
 @login_required
 def index():
@@ -20,21 +20,18 @@ def login():
             "name": request.form.get("name").strip(),
             "pass": request.form.get("password").strip(),
         }
-        
+
         user = User()
         out = user.login(form)
-        
+
         if out == True:
             flash("Logged In", "success")
             session["id"] = user.get_id(form["name"])
             session["name"] = form["name"]
             return redirect("/")
-        
         flash(out, "error")
         return redirect("/login")
 
-        
-    
     if session.get("id") is None:
         return render_template("login.html")
     return redirect("/")
