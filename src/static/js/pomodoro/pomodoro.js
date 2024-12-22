@@ -1,13 +1,15 @@
 import { Timer } from "./Timer.js"
 
-const statusLabel = document.querySelector("#pomodoro_status")
-const timerLabel = document.querySelector("#pomodoro_timer")
-const playButton = document.querySelector("#pomodoro_action")
-const pomodoroModifiers = document.querySelector("#pomodoro_modifiers").childNodes
-
-let timer = new Timer(timerLabel, playButton, statusLabel, 1)
+const pomodoro = {
+    timerLabel: document.querySelector("#pomodoro_timer"),
+    playButton: document.querySelector("#pomodoro_action"),
+    statusLabel: document.querySelector("#pomodoro_status"),
+    notificationElement: document.getElementById('notification-sound')
+}
+let timer = new Timer(pomodoro)
 
 // Setup duration timer modifiers
+const pomodoroModifiers = document.querySelector("#pomodoro_modifiers").childNodes
 pomodoroModifiers.forEach((modifier) => {
     modifier.addEventListener("click", () => {
         let isBreak = true
@@ -21,7 +23,7 @@ pomodoroModifiers.forEach((modifier) => {
 })
 
 // Play/Stop Button
-playButton.addEventListener("click", () => {
+pomodoro.playButton.addEventListener("click", () => {
     timer.toggle()
     console.log(`timerState: ${timer.state}`)
 })

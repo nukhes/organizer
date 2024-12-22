@@ -1,8 +1,9 @@
 export class Timer {
-    constructor (timerLabel, playButton, statusLabel, clock=1000) {
-        this.timerLabel = timerLabel
-        this.playButton = playButton
-        this.statusLabel = statusLabel
+    constructor (pomodoro, clock=1000) {
+        this.timerLabel = pomodoro.timerLabel
+        this.playButton = pomodoro.playButton
+        this.statusLabel = pomodoro.statusLabel
+        this.notificationElement = pomodoro.notificationElement
         this.clock = clock
         this.state = false
         this.isBreak = false
@@ -47,10 +48,14 @@ export class Timer {
         if (!isBreak) { status = "Work, Time to focus" }
         this.statusLabel.innerHTML = status.trim()
 
-        if (min == 0 && sec == 0) {
-            this.state = false
-            this.playButton.style.visibility = "hidden"
-            this.statusLabel.style.visibility = "hidden"
-        }
+        if (min == 0 && sec == 0) { this.end() }
+    }
+
+    end() {
+        this.notificationElement.play()
+        this.state = false
+        this.playButton.style.visibility = "hidden"
+        this.statusLabel.style.visibility = "hidden"
+        alert("Time's up!")
     }
 }
