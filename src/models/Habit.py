@@ -38,11 +38,15 @@ class Habit(Model.Database):
                 # Get streak and last_check
                 cursor.execute("SELECT streak, last_check FROM habits WHERE id = ?", (id,))
                 row = cursor.fetchone()
-                if not row:
-                    return False
-                
                 streak, last_check = row
-
+                if not last_check:
+                    cursor.execute(
+                        "UPDATE habits SET last_check = ?, streak = 1 WHERE id = ?",
+                        (actual_date, id)
+                    )
+                    return True
+                    
+                print(f"streak: {streak}\nlast_check: {last_check}")
                 # Convert dates to datetime
                 actual_date_obj = datetime.strptime(actual_date, "%Y-%m-%d")
                 last_check_obj = datetime.strptime(last_check, "%Y-%m-%d")
