@@ -1,9 +1,7 @@
 # Organizer
 #### Video Demo:  <URL HERE>
 #### Description:
-
-## About
-The Organizer is a website to help organize tasks and manage habits, with an elegant and functional web interface, featuring the main functions of similar apps like Google Tasks and TickTick Habit Tracker.
+The Organizer is a website to help organize tasks and manage habits, with an elegant, dynamic and functional web interface, featuring the main functions of similar apps like Google Tasks and TickTick Habit Tracker.
 
 ## 🧐 Features
 Here're some of the project's best features:
@@ -116,12 +114,12 @@ requirements.txt
     | SQLite Database    | 
     +--------------------+
 ```
-### How it works:
-#### Frontend (Web Application):
+### ⚙ How it works:
+#### 💻 Frontend (Web Application):
 The user interacts with the web pages for tasks, habits, and pomodoro.
 JavaScript sends AJAX requests to the backend (Flask) to handle operations such as login, task management, habit management, and pomodoro functionality in specific routes.
 
-#### Backend (Flask):
+#### 🗄️ Backend (Flask):
 Routes like /login, /register, /tasks, /habits, and /pomodoro handle GET and POST requests.
 For operations (e.g., add, update, delete, toggle), the backend listens at /tasks/operations and /habits/operations routes, receiving data through JSON requests.
 
@@ -134,14 +132,14 @@ Example of JSON Operation Object:
 }
 ```
 
-#### Models (Task, Habit, User):
+#### 🗃️ Models (Task, Habit, User):
 The models interact with the database and perform the required operations (toggle a task, check a habit, etc).
 The response is sent back to the frontend as a JSON object to indicate success or failure in the desired operation.
 
 This architecture uses JavaScript to interact with Flask by using AJAX, creating a dynamic web application where actions on the frontend correspond to operations in the backend. Honestly, I don't know if this is the best way to organize and structure the project logic. If I had chosen a different framework (like Django or NextJS), it could have been more organized and simple. Despite this, I tried to apply as much as possible what I learned during CS50 and in my technical course in Systems Development, using concepts of encapsulation, MVC and object orientation.
 
-## 💻 Built with
-Technologies used in the project:
+## 🛠️ Built with
+Technologies used in Organizer Project:
 - Python
 - Flask
 - SQLite
@@ -150,4 +148,4 @@ Technologies used in the project:
 - JS
 - ~~A lot of Coffee~~
 
-I would like to thank CS50 for involving me in learning more about programming, greetings from São Paulo, Brazil
+I would like to thank CS50 for involving me in learning more about programming, this is something very special and a very cool job of yours, greetings from São Paulo, Brazil.
