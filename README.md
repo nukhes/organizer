@@ -1,5 +1,5 @@
 # Organizer
-#### Video Demo:  <URL HERE>
+#### Video Demo:  [URL HERE](https://youtu.be/wWISpfnjV8M)
 #### Description:
 The Organizer is a website to help organize tasks and manage habits, with an elegant, dynamic and functional web interface, featuring the main functions of similar apps like Google Tasks and TickTick Habit Tracker.
 
@@ -10,6 +10,8 @@ Here're some of the project's best features:
 - Habit Tracking: The habit management system provides a visualization of essential information about them, for example, if you want to start running in the mornings, register the habit and each day you mark it as "done" your streak will increase, each habit has its own streak which is the number of days in a row that you did that.
 
 - Pomodoro Timer: The Pomodoro Technique is a time management that divides work into 25-minute focus intervals, called "Pomodoros", followed by 5-minute breaks, with longer breaks after four sessions. This approach improves focus, reduces fatigue, and boosts productivity by breaking tasks into manageable chunks. Its structured breaks also enhance cognitive performance and time management skills, making it ideal for students and professionals, In the Organizer you can create pomodoro sessions with 25 minutes and a break of 5 or 15 minutes.
+
+- Account Management: Each user has their own secure account. Users can also edit their account details, such as changing their display name or password.
 
 - Lightweight: Based on web technology, the Organizer client can run in any modern browser.
 
