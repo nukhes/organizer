@@ -8,6 +8,7 @@
   packages = [
     pkgs.neofetch
     pkgs.python311
+    pkgs.sqlite.bin
     pkgs.python311Packages.flask
   ];
 
