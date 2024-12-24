@@ -27,3 +27,8 @@ pomodoro.playButton.addEventListener("click", () => {
     timer.toggle()
     console.log(`timerState: ${timer.state}`)
 })
+
+// Alert user if try to exit page
+window.addEventListener("beforeunload", function (event) {
+    event.preventDefault();
+});
