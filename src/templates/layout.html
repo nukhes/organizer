@@ -26,17 +26,21 @@
 
     <button id="toggle_theme"></button>
 
-    <nav>
-        <section>
-            <a href="/tasks"><i class="smooth fa-solid fa-circle-check"></i></a>
-            <a href="/habits"><i class="smooth fa-solid fa-calendar-day"></i></a>
-            <a href="/pomodoro"><i class="smooth fa-solid fa-stopwatch-20"></i></a>
-        </section>
+    {% if 'id' in session %}
 
-        <section>
-            <button id="profile-modal"><i class="fa-solid fa-user"></i></button>
-        </section>
-    </nav>
+        <nav>
+            <section>
+                <a href="/tasks"><i class="smooth fa-solid fa-circle-check"></i></a>
+                <a href="/habits"><i class="smooth fa-solid fa-calendar-day"></i></a>
+                <a href="/pomodoro"><i class="smooth fa-solid fa-stopwatch-20"></i></a>
+            </section>
+
+            <section>
+                <button id="profile-modal"><i class="fa-solid fa-user"></i></button>
+            </section>
+        </nav>
+
+    {% endif %}
 
     <div id="modal_container"></div>
 
