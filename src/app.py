@@ -167,3 +167,45 @@ def habits_operations():
 def pomodoro():
     return render_template("pomodoro.html")
 
+@app.route("/profile")
+@login_required
+def profile():
+    return render_template("./profile/profile.html")
+
+# Example of valid call "/profile/change?data=name" or "/profile/change?data=pass"
+@app.route("/profile/change", methods=["POST", "GET"])
+@login_required
+def change_name():
+    valid_data = ["name", "pass"]
+    to_change = request.args.get("data")
+
+    # If field to be change is invalid or null
+    if to_change not in valid_data:
+        return redirect("/profile")
+
+    if request.method == "POST":
+        form = {
+            "name": session["name"],
+            "one": request.form.get(to_change).strip(),
+            "two": request.form.get("again").strip(),
+            "toChange": to_change
+        }
+
+        user = User()
+        out = user.updateData(form)
+
+        if out == True:
+            flash("Change was made", "success")
+            return redirect("/logout")
+        flash(out, "error")
+        return redirect("/profile")
+
+    if to_change == valid_data[0]:
+        return render_template("./profile/change_name.html")
+    return render_template("./profile/change_password.html")
+
+@app.route("/logout", methods=["POST", "GET"])
+@login_required
+def logout():
+    session.clear()
+    return redirect("/login")

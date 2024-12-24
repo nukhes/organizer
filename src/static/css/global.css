@@ -119,11 +119,24 @@ button[type="submit"]:hover {
 }
 
 .main {
+    text-decoration: none;
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+.main ul {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    list-style: none;
+    padding: 0;
+}
+
+.main ul li a {
+    text-decoration: none;
 }
 

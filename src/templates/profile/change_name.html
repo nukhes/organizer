@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Change Name
+{% endblock %}
+
+{% block body %}
+    <div class="main">
+        <form action="/profile/change?data=name" method="POST">
+            <h1>Change Name</h1>
+            <input class="smooth" type="text" placeholder="Name" name="name">
+            <input class="smooth" type="text" placeholder="Name Again" name="again">
+            <button class="smooth" type="submit">Change Name</button>
+        </form>
+    </div>
+{% endblock %}

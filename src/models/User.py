@@ -84,3 +84,37 @@ class User(Model.Database):
             
         return True if not out else out
     
+    def updateData(self, form):
+        connection = sqlite3.connect(self.path)
+        cursor = connection.cursor()
+        
+        out = ""
+        
+        try:
+            user_id = self.get_id(form["name"])
+            
+            # Check if every value is assigned
+            for value in form.values():
+                if value == "":
+                    out = "Fill the form correctly"
+                    return out
+
+            # Check if the first and second field are the same (confirmation step)
+            if form["one"] != form["two"]:
+                out = "Fields must be equal"
+                return out
+
+            if form["toChange"] == "name":
+                cursor.execute("UPDATE users SET username = ? WHERE id = ?", (form["one"], user_id))
+            elif form["toChange"] == "pass":
+                hashed_form_pass = generate_password_hash(form["one"])
+                cursor.execute("UPDATE users SET hash = ? WHERE id = ?", (hashed_form_pass, user_id))
+            else:
+                return "Invalid field to change"
+            connection.commit()
+            return True
+        except Exception as e:
+            out = e
+            
+        return True if not out else out
+    
